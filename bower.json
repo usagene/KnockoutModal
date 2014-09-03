@@ -1,0 +1,38 @@
+{
+  "name": "KnockoutModal",
+  "description": "KnockoutModal is a wrapper around bootstrap modal dialog, which works as a knockout binding.",
+  "version": "1.0.0-alpha",
+  "keywords": [
+    "modal",
+    "js",
+    "bootstrap",
+    "knockout",
+    "dialog"
+  ],
+  "homepage": "https://github.com/usagene/modal",
+  "main": [
+    "less/bootstrap.less",
+    "dist/css/bootstrap.css",
+    "dist/js/bootstrap.js",
+    "dist/fonts/glyphicons-halflings-regular.eot",
+    "dist/fonts/glyphicons-halflings-regular.svg",
+    "dist/fonts/glyphicons-halflings-regular.ttf",
+    "dist/fonts/glyphicons-halflings-regular.woff"
+  ],
+  "ignore": [
+    ".*",
+    "_config.yml",
+    "CNAME",
+    "composer.json",
+    "CONTRIBUTING.md",
+    "docs",
+    "js/tests",
+    "test-infra"
+  ],
+  "dependencies": {
+    "jquery": ">= 1.9.0",
+    "bootstrap": "~3.2.0",
+    "requirejs": "~2.1.14",
+    "knockoutjs": "~3.2.0"
+  }
+}
