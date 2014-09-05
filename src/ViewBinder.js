@@ -1,7 +1,7 @@
-define(function(){
+define(['jquery', 'knockout'],function($, ko){
     function ViewBinder(viewPath, viewModelPath, modelPath){
         var $bindingComplete = $.Deferred(),
-            viewModel
+            viewModel,
             that = this;
 
         this.applyBindings = function($element){
@@ -12,8 +12,6 @@ define(function(){
                     ko.applyBindingsToDescendants(viewModel, $element[0]);
 
                     $bindingComplete.resolve();
-                }).error(function(){
-                    $bindingComplete.reject();
                 });
             });
 

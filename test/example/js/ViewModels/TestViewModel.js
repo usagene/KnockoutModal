@@ -9,7 +9,7 @@ define(['knockout', '../../../../src/ViewBinder'], function(ko,ViewBinder){
           this.show(true);
         };
 
-        this.binder = new ViewBinder("../dialogs/TestDialog.html", "ViewModels/DialogViewModel", "Modals/Dialog");
+        this.binder = new ViewBinder("text!../dialogs/TestDialog.html", "ViewModels/DialogViewModel", "Models/Dialog");
     }
 
     return TestViewModel;

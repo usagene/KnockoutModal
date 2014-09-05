@@ -1,4 +1,4 @@
-﻿define("bindingWrapper", ['knockout', 'jquery', 'jqueryui'], function (ko, $) {
+﻿define(['knockout', 'jquery', 'jqueryui'], function (ko, $) {
     'use strict';
 
     function BindingWrapper(HandlerClass, controlDescendantBindings) {
