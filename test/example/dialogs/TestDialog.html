@@ -1,9 +1,18 @@
-<div class="modal">
-    <div class="modal-header">
-    <h3>Testing Dialog</h3><button class="button close" data-dismiss="modal"></button>
-    </div>
-    <div class="modal-body">This is the body of the dialog!</div>
-    <div class="modal-footer">
-        <button class="button bg-primary" data-dismiss="modal">Ok</button>
+<div class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Testing Dialog</h4>
+            </div>
+            <div class="modal-body">
+                <h3>This is the body of the dialog!</h3>
+                <div>Name: <span data-bind="text:name"></span></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
     </div>
 </div>

@@ -7,7 +7,8 @@ require.config({
         "jquery": "../../../lib/jquery/dist/jquery",
         "bootstrap": "../../../lib/bootstrap/dist/js/bootstrap",
         "jqueryui": "../../../lib/jqueryui/jquery-ui",
-        "text": "../../../lib/requirejs-text/text"
+        "text": "../../../lib/requirejs-text/text",
+        "komapping": "../../../lib/knockout-mapping/knockout.mapping"
     },
     shim: {
         "bootstrap": ["jquery"]

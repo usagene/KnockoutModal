@@ -1,6 +1,6 @@
 define(["./core/KOBindingWrapper", "knockout", "bootstrap"], function(BindingWrapper, ko){
-   function Modal($element){
-       var that = this;
+   function ModalBindingHandler($element){
+       var that = this, $dialog = null;
        this.$element = $element;
 
        this.init = function(showModal, allBindings, viewModel){
@@ -8,15 +8,15 @@ define(["./core/KOBindingWrapper", "knockout", "bootstrap"], function(BindingWra
        };
 
        this.update = function(showModal,allBindings, viewModel){
-           var $dialog = null;
+           $dialog = null;
 
            if(showModal && allBindings.binder){
                allBindings.binder.applyBindings(that.$element).done(function(){
                        $dialog = $(".modal", that.$element[0]);
                        $dialog.modal("show");
 
-                        $dialog.on("hidden", function(){
-                            //allBindings.binder.dispose();
+                        $dialog.on("hidden.bs.modal", function(){
+                            allBindings.binder.dispose();
                             viewModel.show(false);
                         });
                });
@@ -24,11 +24,12 @@ define(["./core/KOBindingWrapper", "knockout", "bootstrap"], function(BindingWra
        };
 
        this.dispose = function(){
+           $dialog = null;
            that.$element = null;
            that = null;
        }
    }
 
-    ko.bindingHandlers.modal = new BindingWrapper(Modal);
+    ko.bindingHandlers.modal = new BindingWrapper(ModalBindingHandler);
 
 });

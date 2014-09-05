@@ -7,9 +7,10 @@
     <link type="text/css" rel="stylesheet" href="../../lib/bootstrap/dist/css/bootstrap-theme.css" />
     <link type="text/css" rel="stylesheet" href="css/test.css" />
 </head>
-<body>
+<body class="panel-body">
+<h3>A demo of showing a modal dialog from a button</h3>
 <div><div data-bind="modal: show, binder: binder"></div></div>
-<div><button class="button btn-primary" data-bind="click: showTestDialog">Show Test Dialog</button></div>
+<div class="p-t-10"><button class="button" data-bind="click: showTestDialog">Show Test Dialog</button></div>
 <script type="text/javascript" src="../../lib/requirejs/require.js" data-main="js/main.js"></script>
 </body>
 </html>

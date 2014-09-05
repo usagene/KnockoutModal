@@ -1,7 +1,7 @@
 /**
  * Created by Sunshine on 9/3/14.
  */
-define(['knockout', '../../../../src/ViewBinder'], function(ko,ViewBinder){
+define(['knockout', '../../../../src/core/ViewBinder'], function(ko,ViewBinder){
     function TestViewModel(){
         this.show = ko.observable(false);
 
