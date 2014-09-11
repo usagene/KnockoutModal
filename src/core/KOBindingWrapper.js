@@ -65,7 +65,7 @@
         this.update = function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
             var handler = that.getHandlerInstance($(element));
             if (handler.update) {
-                handler.update(ko.utils.unwrapObservable(valueAccessor()), ko.utils.unwrapObservable(allBindingsAccessor()), viewModel, bindingContext);
+                handler.update(ko.utils.unwrapObservable(valueAccessor()), allBindingsAccessor(), viewModel, bindingContext);
             }
         };
     }

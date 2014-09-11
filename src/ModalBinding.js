@@ -1,31 +1,58 @@
 define(["./core/KOBindingWrapper", "knockout", "bootstrap"], function(BindingWrapper, ko){
-   function ModalBindingHandler($element){
+   function ModalBindingHandler($element, valueAccessor){
        var that = this, $dialog = null;
+       this.$dialogHolder = null;
        this.$element = $element;
+       this.binder = null;
 
        this.init = function(showModal, allBindings, viewModel){
             // any initialization logic
+           // any initialization logic
+           if (allBindings && allBindings.dialogHolderSelector) {
+               this.$dialogHolder = $(allBindings.dialogHolderSelector);
+           }
        };
 
        this.update = function(showModal,allBindings, viewModel){
-           $dialog = null;
+           if (showModal && allBindings.binder) {
+               this.binder = allBindings.binder;
+               this.binder.applyBindings(that.$element).done(function () {
+                   $dialog = $(".modal", that.$element[0]);
+                   $dialog.appendTo(that.$dialogHolder || document.body).modal("show");
 
-           if(showModal && allBindings.binder){
-               allBindings.binder.applyBindings(that.$element).done(function(){
-                       $dialog = $(".modal", that.$element[0]);
-                       $dialog.modal("show");
+                   $dialog.on("hidden.bs.modal", function () {
+                       that.binder.disposeChildren();
 
-                        $dialog.on("hidden.bs.modal", function(){
-                            allBindings.binder.dispose();
-                            viewModel.show(false);
-                        });
+                       // clear the dialog region
+                       ko.cleanNode($dialog[0]);
+                       $dialog.empty();
+                       $dialog.remove();
+                       $dialog = null;
+
+                       // update view model with modal hidden state, no else block, don't think the valueAccessor can be a direct value here
+                       if (ko.observable(valueAccessor())) {
+                           valueAccessor()(false);
+                       }
+                   });
                });
+           } else if (!showModal) {
+               if ($dialog) {
+                   $dialog.modal("hide");
+                   $dialog = null;
+               }
            }
        };
 
        this.dispose = function(){
+           this.$dialogHolder = null;
+
+           if (this.binder && this.binder.dispose) {
+               this.binder.dispose();
+           }
+           this.binder = null;
+           this.$element = null;
+
            $dialog = null;
-           that.$element = null;
            that = null;
        }
    }

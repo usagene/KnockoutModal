@@ -1,7 +1,7 @@
 /**
  * Created by Sunshine on 9/3/14.
  */
-define(['knockout', '../../../../src/core/ViewBinder'], function(ko,ViewBinder){
+define(['knockout', '../../../../src/core/ViewBinder', 'Models/Dialog'], function(ko,ViewBinder, model){
     function TestViewModel(){
         this.show = ko.observable(false);
 
@@ -9,7 +9,7 @@ define(['knockout', '../../../../src/core/ViewBinder'], function(ko,ViewBinder){
           this.show(true);
         };
 
-        this.binder = new ViewBinder("text!../dialogs/TestDialog.html", "ViewModels/DialogViewModel", "Models/Dialog");
+        this.binder = new ViewBinder("text!../dialogs/TestDialog.html", "ViewModels/DialogViewModel", model);
     }
 
     return TestViewModel;
