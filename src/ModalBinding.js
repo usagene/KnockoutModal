@@ -5,6 +5,16 @@ define(["./core/KOBindingWrapper", "knockout", "bootstrap"], function(BindingWra
        this.$element = $element;
        this.binder = null;
 
+       this.clearDialog = function(){
+           // clear the dialog region
+           if($dialog){
+               ko.cleanNode($dialog[0]);
+               $dialog.empty();
+               $dialog.remove();
+               $dialog = null;
+           }
+       };
+
        this.init = function(showModal, allBindings, viewModel){
             // any initialization logic
            // any initialization logic
@@ -23,11 +33,7 @@ define(["./core/KOBindingWrapper", "knockout", "bootstrap"], function(BindingWra
                    $dialog.on("hidden.bs.modal", function () {
                        that.binder.disposeChildren();
 
-                       // clear the dialog region
-                       ko.cleanNode($dialog[0]);
-                       $dialog.empty();
-                       $dialog.remove();
-                       $dialog = null;
+                       that.clearDialog();
 
                        // update view model with modal hidden state, no else block, don't think the valueAccessor can be a direct value here
                        if (ko.observable(valueAccessor())) {
@@ -49,10 +55,11 @@ define(["./core/KOBindingWrapper", "knockout", "bootstrap"], function(BindingWra
            if (this.binder && this.binder.dispose) {
                this.binder.dispose();
            }
+
+           this.clearDialog();
+
            this.binder = null;
            this.$element = null;
-
-           $dialog = null;
            that = null;
        }
    }
